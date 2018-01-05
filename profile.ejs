@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication with Passport</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body{
+            padding-top: 100px;
+            background: rgb(230, 230, 233);
+            word-wrap: break-word;
+        }
+        h1{
+            color: rgb(55, 70, 153);
+            font-size: 48px;
+            margin-bottom: 40px;
+        }
+        a{
+            color: rgb(55, 70, 153);
+            font-size: 18px;
+        }
+        p{
+            color: rgb(55, 70, 153);
+            font-size: 18px;
+        }
+        .btn{
+            font-size: 18px;
+        }
+        .bottom-margin{
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="text-center">
+        <h1><span class="fa"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-warning btn-lg bottom-margin">Logout</a>
+    </div>
+    <div class="row">
+
+        <!-- local information -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> Local</h3>
+                <% if (user.local.email) { %>
+                    <p>
+                        <strong>id</strong>: <%= user._id %><br>
+                        <strong>email</strong>: <%= user.local.email %><br>
+                        <strong>password</strong>: <%= user.local.password %>
+                    </p>
+                <% } 
+                
+                else { %>
+                    <a href="/login" class="btn"> Local Login</a>
+                <% } %>
+            </div>
+        </div>
+
+        <!-- google information -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google</h3>
+                    <!-- check if the user is authenticated with this social account) -->
+                <% if (user.google.token) { %>
+                    <p>
+                        <strong>id</strong>: <%= user.google.id %><br>
+                        <strong>token</strong>: <%= user.google.token %><br>
+                        <strong>email</strong>: <%= user.google.email %><br>
+                        <strong>name</strong>: <%= user.google.name %>
+                    </p>
+                <% } 
+
+                else { %>
+                    <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+                <% } %>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
